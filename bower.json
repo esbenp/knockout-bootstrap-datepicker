@@ -1,6 +1,6 @@
 {
   "name": "knockout-bootstrap-datepicker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/esbenp/knockout-bootstrap-datepicker",
   "license": "Apache 2.0",
   "ignore": [
@@ -11,7 +11,7 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-datepicker": "~1.4.0",
+    "bootstrap-datepicker": "master",
     "knockout": "~3.3.0"
   },
   "devDependencies": {

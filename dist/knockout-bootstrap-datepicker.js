@@ -80,7 +80,7 @@ Datepicker.prototype.generateBootstrapDatepickerSettings = function generateBoot
     if (!(settings.startDate instanceof Date)) {
         settings.startDate = parseDateString(settings.startDate);
     }
-console.log(settings);
+
     return settings;
 }
 
