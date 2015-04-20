@@ -71,7 +71,9 @@ Datepicker.prototype.generateSettings = function generateSettings() {
 Datepicker.prototype.generateBootstrapDatepickerSettings = function generateBootstrapDatepickerSettings() {
     var settings = $.extend({}, Datepicker.DEFAULTS.BootstrapDatepicker, this.settings);
 
-    settings.startDate = new Date(settings.startDate);
+    if (!(settings.startDate instanceof Date)) {
+        settings.startDate = new Date(settings.startDate);
+    }
 
     return settings;
 }
@@ -79,6 +81,12 @@ Datepicker.prototype.generateBootstrapDatepickerSettings = function generateBoot
 Datepicker.prototype.initializeDatepicker = function initializeDatepicker() {
     var settings = this.generateBootstrapDatepickerSettings();
     this.element.datepicker(settings);
+
+    var initialDate = ko.unwrap(this.observable);
+    if (!initialDate instanceof Date) {
+        initialDate = new Date(initialDate);
+    }
+    this.updateDatepicker(initialDate);
 }
 
 Datepicker.prototype.setObservable = function setObservable(date) {

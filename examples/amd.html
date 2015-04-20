@@ -4,15 +4,16 @@
     <meta charset="utf-8">
     <title>Examples</title>
 
-    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <script data-main="amd" src="../bower_components/requirejs/require.js"></script>
 </head>
 <body>
 
 	<div id="container">
-        <input type="text" data-bind="datepicker: date"> 
+        <input type="text" data-bind="datepicker: date">
         <div data-bind="text: date"></div>
-        <button data-bind="click: today">Set date to today</button>
     </div>
 
 </body>
