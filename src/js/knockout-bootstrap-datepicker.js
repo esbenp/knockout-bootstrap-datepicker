@@ -1,7 +1,7 @@
 var Datepicker = function Datepicker(element, valueAccessor, allBindings){
     this.element = $(element);
     this.observable = valueAccessor();
-    this.settings = this.generateSettings();
+    this.settings = this.generateSettings(allBindings());
 
     // Initialize the bootstrap datepicker library
     this.initializeDatepicker();
@@ -21,15 +21,19 @@ var Datepicker = function Datepicker(element, valueAccessor, allBindings){
 Datepicker.DEFAULTS = {
     // Default settings for the binding
     Binding: {
-        defaultViewDate: "today"
+        defaultViewDate: "today",
+        startDate: null
     },
     // Default settings for the bootstrap datepicker library
     BootstrapDatepicker: {
         autoclose: true,
         format: "yyyy-mm-dd",
-        startDate: null,
         weekStart: 1
     }
+}
+
+var parseDateString = function parseDateString(string) {
+    return string === "today" ? new Date() : new Date(string);
 }
 
 Datepicker.prototype.datePickedEvent = function datePickedEvent(e) {
@@ -43,18 +47,20 @@ Datepicker.prototype.datePickedEvent = function datePickedEvent(e) {
     this.ignoreSubscription = false;
 }
 
-Datepicker.prototype.generateSettings = function generateSettings() {
-    var settings = $.extend({}, Datepicker.DEFAULTS.Binding);
+Datepicker.prototype.generateSettings = function generateSettings(bindings) {
+    var settings = $.extend({}, Datepicker.DEFAULTS.Binding, bindings);
 
     // Let the users use the power of Date's constructor to set 
     // a defaultViewDate and parse it to match bootstrap datepicker's
     // format
-    var defaultViewDate = settings.defaultViewDate === "today" ? new Date() : new Date(settings.defaultViewdate);
+    var defaultViewDate = parseDateString(settings.defaultViewDate);
     settings.defaultViewDate = {
         year: defaultViewDate.getFullYear(),
         month: defaultViewDate.getMonth(),
         day: defaultViewDate.getDate()
     };
+
+
 
     return settings;
 }
@@ -63,9 +69,9 @@ Datepicker.prototype.generateBootstrapDatepickerSettings = function generateBoot
     var settings = $.extend({}, Datepicker.DEFAULTS.BootstrapDatepicker, this.settings);
 
     if (!(settings.startDate instanceof Date)) {
-        settings.startDate = new Date(settings.startDate);
+        settings.startDate = parseDateString(settings.startDate);
     }
-
+console.log(settings);
     return settings;
 }
 

@@ -21,7 +21,7 @@ requirejs.config({
 });
 
 requirejs(["knockout", "dist/knockout-bootstrap-datepicker", "knockout-bootstrap-modal"], function(ko, datepicker, modal){
-    var date = ko.observable("2014-05-05");
+    var date = ko.observable("2015-05-05");
 
     ko.applyBindings({
         date: date,
